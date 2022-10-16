@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Personal APP</title>
+    <link
+      rel="icon"
+      href="{{ url_for('static', filename='favicon.ico') }}"
+      type="image/x-icon"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <main class="container">
+      <nav class="nav">
+        <ul class="nav__list">
+          <li class="nav__item"><a class="nav__link" href="/contacts" role="button">Contacts</a></li>
+        </ul>
+      </nav>
+
+      <section class="content">
+        <header class="content__header">
+          {% block header %}
+          <h1 class="content__title" >Welcome to the Personal App !</h1>
+          {% endblock %}
+        </header>
+
+        {% for message in get_flashed_messages() %}
+        <div class="flash">{{message}}</div>
+        {% endfor %} 
+        
+        {% block content %}{% endblock %}
+      </section>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,28 @@
+{% extends "base.html" %} {% block header %}
+<h3 class="contacts__title">Contact</h3>
+
+{% endblock %} {% for message in get_flashed_messages() %}
+<div class="flash">{{message}}</div>
+{% endfor %} {% block content%}
+<div class="contact__container">
+  <h2 class="contact__title">
+    {{contact['first_name'] + " " + contact['last_name']}}
+  </h2>
+  <div class="table__wrapper">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Email</th>
+          <th>Phone</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{contact['email']}}</td>
+          <td>{{contact['phone']}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

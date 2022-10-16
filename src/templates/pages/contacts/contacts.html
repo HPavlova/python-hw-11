@@ -1,0 +1,91 @@
+{% extends "base.html" %} {% block header %} {% endblock %} {% for message in
+get_flashed_messages() %}
+<div class="flash">{{message}}</div>
+{% endfor %} {% block content %}
+<div class="option__wrapper">
+  <div class="add__container">
+    <h3 class="contacts__title">Add Contact</h3>
+    <form class="add__form" method="POST" action="/contacts">
+      <div class="add__container__input">
+        <input
+          class="option__input"
+          type="text"
+          id="first_name"
+          name="first_name"
+          placeholder="Enter a name"
+          required
+        />
+        <input
+          class="option__input"
+          type="text"
+          id="last_name"
+          name="last_name"
+          placeholder="Enter a surname"
+          required
+        />
+        <input
+          class="option__input"
+          type="email"
+          id="email"
+          name="email"
+          placeholder="Enter a email"
+          required
+        />
+        <input
+          class="option__input"
+          type="tel"
+          id="phone"
+          name="phone"
+          placeholder="Enter a phone"
+        />
+      </div>
+      <button class="button" type="submit">Save</button>
+    </form>
+  </div>
+
+  <div class="search__container">
+    <h3 class="contacts__title">&#128269; Search</h3>
+    <form class="search__form" method="post" action="/contacts/detail">
+      <input
+        class="option__input"
+        type="text"
+        id="id"
+        name="id"
+        placeholder="Enter contact id"
+      />
+      <button class="button" type="submit">Send</button>
+    </form>
+  </div>
+</div>
+
+<div class="table__wrapper">
+  <h3 class="contacts__title">Contacts</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Email</th>
+        <th>Phone</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for contact in contacts %}
+      <tr>
+        <td>{{contact['id']}}</td>
+        <td>{{contact['first_name']}}</td>
+        <td>{{contact['last_name']}}</td>
+        <td>{{contact['email']}}</td>
+        <td>{{contact['phone']}}</td>
+        <td>
+          <form method="post" action="/contacts/delete/{{contact.id}}">
+            <button>-</button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
