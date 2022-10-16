@@ -1,12 +1,11 @@
-from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql.schema import ForeignKey
-
-db = SQLAlchemy()
+from src.__init__ import app, db
 
 
 class Contact(db.Model):
     __tablename__ = "contacts"
+    __table_args__ = {'extend_existing': True}
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String(50), nullable=False)
     last_name = db.Column(db.String(50), nullable=False)
@@ -20,6 +19,7 @@ class Contact(db.Model):
 
 class Phone(db.Model):
     __tablename__ = "phones"
+    __table_args__ = {'extend_existing': True}
     id = db.Column(db.Integer, primary_key=True)
     phone = db.Column(db.String(50), nullable=True, default='No phone')
     contact_id = db.Column(db.Integer, ForeignKey('contacts.id'), nullable=False)
@@ -28,7 +28,14 @@ class Phone(db.Model):
 
 class Email(db.Model):
     __tablename__ = "emails"
+    __table_args__ = {'extend_existing': True}
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(50), nullable=True, default='No email')
     contact_id = db.Column(db.Integer, ForeignKey('contacts.id'), nullable=False)
     contact = relationship("Contact", back_populates="email")
+
+
+if __name__ == "__main__":
+    app.app_context().push()
+    db.create_all()
+    
