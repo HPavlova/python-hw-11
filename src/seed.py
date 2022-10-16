@@ -1,5 +1,4 @@
-from src.db import session
-from src.models import Contact, Phone, Email
+from src.models import db, Contact, Phone, Email
 from faker import Faker
 
 fake = Faker()
@@ -27,33 +26,33 @@ def generate_fake_contacts():
             contact=contact
         )
 
-        session.add(contact)
-        session.add(phone)
-        session.add(email)
+        db.session.add(contact)
+        db.session.add(phone)
+        db.session.add(email)
 
-        session.commit()
+        db.session.commit()
 
 
 def add_phone(contact_id, phone):
-    contact: object = session.query(Contact).filter(Contact.id == contact_id).first()
+    contact: object = db.session.query(Contact).filter(Contact.id == contact_id).first()
     phone = Phone(
         phone=phone,
         contact=contact
     )
 
-    session.add(phone)
-    session.commit()
+    db.session.add(phone)
+    db.session.commit()
 
 
 def add_email(contact_id, email):
-    contact: object = session.query(Contact).filter(Contact.id == contact_id).first()
+    contact: object = db.session.query(Contact).filter(Contact.id == contact_id).first()
     email = Email(
         email=email,
         contact=contact
     )
 
-    session.add(email)
-    session.commit()
+    db.session.add(email)
+    db.session.commit()
 
 
 def add_contact(first_name, last_name, phone, email):
@@ -73,24 +72,27 @@ def add_contact(first_name, last_name, phone, email):
         contact=contact
     )
 
-    session.add(contact)
-    session.add(phone)
-    session.add(email)
+    db.session.add(contact)
+    db.session.add(phone)
+    db.session.add(email)
 
-    session.commit()
+    db.session.commit()
+
+    return contact
 
 
 def get_contact_by_id(contact_id):
-    contact: object = session.query(Contact).filter(Contact.id == contact_id).first()
+    contact: object = db.session.query(Contact).filter(Contact.id == contact_id).first()
     return contact
 
 
 def delete_contact(contact_id):
-    contact: object = session.query(Contact).filter(Contact.id == contact_id).first()
-    session.delete(contact)
-    session.commit()
+    contact: object = db.session.query(Contact).filter(Contact.id == contact_id).first()
+    db.session.delete(contact)
+    db.session.commit()
+
 
 def get_contacts():
-    contacts: object = session.query(Contact).all()
+    contacts: object = db.session.query(Contact).all()
     return contacts
     
