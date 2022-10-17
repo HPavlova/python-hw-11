@@ -1,0 +1,150 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style-type: none;
+}
+
+body {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: 16px;
+  color: #212121;
+  background: #f1f2f4;
+}
+
+.container {
+  position: relative;
+  min-height: 100%;
+  display: grid;
+  grid-template: minmax(60px, auto) 1fr / 1fr;
+}
+
+a {
+  color: #606770;
+  cursor: pointer;
+}
+
+.header {
+  display: grid;
+  align-items: center;
+  padding: 15px;
+  box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.1);
+}
+
+.nav__list {
+  display: grid;
+  grid-auto-flow: column;
+  align-items: center;
+  justify-items: end;
+  grid-column: 3 / 4;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.nav__item > a:hover,
+.nav__item > a:focus {
+  color: #3578e5;
+  box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.1);
+}
+
+.nav__link {
+  margin-right: 20px;
+}
+
+.content {
+  margin: 20px;
+}
+
+.content__title {
+  text-align: center;
+}
+
+.flashes {
+  text-align: center;
+}
+
+.flash {
+  padding: 5px;
+}
+
+.error {
+  background-color: rgb(241, 73, 73);
+  color: white;
+}
+
+.info {
+  background-color: #04aa6d;
+  color: white;
+}
+
+.button {
+  text-align: center;
+  width: 50px;
+  background-color: #04aa6d;
+  color: white;
+  border: 2px solid transparent;
+  cursor: pointer;
+}
+
+.option__wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin-top: 20px;
+}
+
+.option__input {
+  padding-left: 5px;
+  margin-top: 10px;
+}
+
+.add__title {
+  margin-bottom: 3px;
+}
+
+.table__wrapper {
+  margin-top: 20px;
+}
+.table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 10px;
+}
+
+td,
+th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+  background-color: #ddd;
+}
+
+th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04aa6d;
+  color: white;
+}
+
+.table__button {
+  text-align: center;
+  width: 100%;
+  border: 2px solid transparent;
+  cursor: pointer;
+}
+
+.contact__header {
+  text-align: right;
+  margin-right: 20px;
+}
+
+.contact__container {
+  margin-top: 20px;
+}
