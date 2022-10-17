@@ -6,7 +6,7 @@ from config import config
 
 from src import routes, models
 
-app = Flask(__name__)
+app = Flask(__name__, instance_relative_config=True)
 app.config.from_object(config.Config)
 app.config['SESSION_TYPE'] = 'filesystem'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
