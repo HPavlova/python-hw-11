@@ -18,9 +18,9 @@ def contacts():
         new_contact = add_contact(first_name, last_name, phone, email)
         if new_contact:
             flash(
-                f'Contact {new_contact.first_name} {new_contact.last_name} was created')
+                f'Contact {new_contact.first_name} {new_contact.last_name} was created', 'info')
         else:
-            flash('Something went wrong. Try again!')
+            flash('Something went wrong. Try again!', 'error')
     contacts_all = get_contacts()
     return render_template("pages/contacts/contacts.html", contacts=contacts_all)
 
@@ -33,7 +33,7 @@ def detail():
         if contact:
             return render_template("pages/contacts/detailContact.html", contact=contact)
         else:
-            flash(f'Contact ID does not exist ')
+            flash('Contact ID does not exist', 'error')
     return redirect(url_for('contacts'))
 
 
@@ -41,6 +41,6 @@ def detail():
 def delete(contact_id):
     if request.method == 'POST':
         delete_contact(contact_id)
-        flash('Contact was deleted')
+        flash('Contact was deleted', 'info')
     return redirect(url_for('contacts'))
 

@@ -15,24 +15,28 @@
   </head>
   <body>
     <main class="container">
-      <nav class="nav">
-        <ul class="nav__list">
-          <li class="nav__item"><a class="nav__link" href="/contacts" role="button">Contacts</a></li>
-        </ul>
-      </nav>
+      <header class="header">
+        <nav class="nav">
+          <ul class="nav__list">
+            <li class="nav__item">
+              <a class="nav__link" href="/" role="button">Home</a>
+              <a class="nav__link" href="/contacts" role="button">Contacts</a>
+            </li>
+          </ul>
+        </nav>
+      </header>
 
       <section class="content">
-        <header class="content__header">
-          {% block header %}
-          <h1 class="content__title" >Welcome to the Personal App !</h1>
-          {% endblock %}
-        </header>
-
-        {% for message in get_flashed_messages() %}
-        <div class="flash">{{message}}</div>
-        {% endfor %} 
-        
-        {% block content %}{% endblock %}
+        {% block header %}
+        <h1 class="content__title">Welcome to the Personal App !</h1>
+        {% endblock %} {% with messages =
+        get_flashed_messages(with_categories=true) %} {% if messages %}
+        <ul class="flashes">
+          {% for category, message in messages %}
+          <li class="{{category}} flash">{{message}}</li>
+          {% endfor %}
+        </ul>
+        {% endif %} {% endwith %}{% block content %}{% endblock %}
       </section>
     </main>
   </body>

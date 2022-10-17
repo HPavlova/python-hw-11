@@ -1,9 +1,6 @@
 {% extends "base.html" %} {% block header %}
-<h3 class="contacts__title">Contact</h3>
-
-{% endblock %} {% for message in get_flashed_messages() %}
-<div class="flash">{{message}}</div>
-{% endfor %} {% block content%}
+<h3 class="contact__header">Contact</h3>
+{% endblock %} {% block content%}
 <div class="contact__container">
   <h2 class="contact__title">
     {{contact['first_name'] + " " + contact['last_name']}}

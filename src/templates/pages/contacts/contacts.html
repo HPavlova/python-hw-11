@@ -1,12 +1,9 @@
-{% extends "base.html" %} {% block header %} {% endblock %} {% for message in
-get_flashed_messages() %}
-<div class="flash">{{message}}</div>
-{% endfor %} {% block content %}
+{% extends "base.html" %} {% block header %} {% endblock %} 
+{% block content %}
 <div class="option__wrapper">
   <div class="add__container">
-    <h3 class="contacts__title">Add Contact</h3>
+    <h3 class="contacts__title add__title">Add Contact</h3>
     <form class="add__form" method="POST" action="/contacts">
-      <div class="add__container__input">
         <input
           class="option__input"
           type="text"
@@ -38,7 +35,6 @@ get_flashed_messages() %}
           name="phone"
           placeholder="Enter a phone"
         />
-      </div>
       <button class="button" type="submit">Save</button>
     </form>
   </div>
@@ -59,7 +55,7 @@ get_flashed_messages() %}
 </div>
 
 <div class="table__wrapper">
-  <h3 class="contacts__title">Contacts</h3>
+  <h3 class="contacts__title table__wrapper__title">Contacts</h3>
   <table class="table">
     <thead>
       <tr>
@@ -68,6 +64,7 @@ get_flashed_messages() %}
         <th>Surname</th>
         <th>Email</th>
         <th>Phone</th>
+        <th>Delete</th>
       </tr>
     </thead>
     <tbody>
@@ -80,7 +77,7 @@ get_flashed_messages() %}
         <td>{{contact['phone']}}</td>
         <td>
           <form method="post" action="/contacts/delete/{{contact.id}}">
-            <button>-</button>
+            <button class="table__button">-</button>
           </form>
         </td>
       </tr>
